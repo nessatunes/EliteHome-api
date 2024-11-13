@@ -1,7 +1,9 @@
+import { AppInfoUseCase } from "@/use-cases/app-info";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
 export function info(req: FastifyRequest, reply: FastifyReply) {
-  return reply.status(200).send({
-    message: "App is running!",
-  });
+  const useCase = new AppInfoUseCase();
+  const response = useCase.execute();
+
+  return reply.status(200).send();
 }
